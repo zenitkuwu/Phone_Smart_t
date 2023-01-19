@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
 from paho.mqtt import client as mqtt_client
 
 
@@ -45,11 +46,10 @@ class MainApp(App):
         self.client = client
 
     def build(self):
-        return Button(
-                text="Led",
-                size_hint=(.5, .5),
-                pos_hint={'center_x': .5, 'center_y': .5},
-                on_press=self.press_btn)
+        main_layout = BoxLayout()
+        button = Button(text="Led ON", pos_hint={"center_x": 0.5, "center_y": 0.5},on_press=self.press_btn)
+        main_layout.add_widget(button)
+        return main_layout
 
     def press_btn(self,instance):
         global is_on
